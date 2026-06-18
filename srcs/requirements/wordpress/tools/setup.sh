@@ -14,7 +14,6 @@ until mysqladmin ping -h mariadb -u"${MYSQL_USER}" -p"${DB_PASSWORD}" --silent; 
 done
 
 if [ ! -f wp-config.php ]; then
-    # نتحقق من وجود ملفات الووردبريس قبل التحميل لتجنب خطأ files already present
     if [ ! -f wp-settings.php ]; then
         wp core download --allow-root
     fi
