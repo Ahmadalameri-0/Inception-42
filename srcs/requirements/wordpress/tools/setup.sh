@@ -9,9 +9,7 @@ WP_USER_PASSWORD=$(sed -n '2p' /run/secrets/credentials)
 mkdir -p /var/www/html
 cd /var/www/html
 
-until mysqladmin ping -h mariadb -u"${MYSQL_USER}" -p"${DB_PASSWORD}" --silent; do
-    sleep 2
-done
+mysqladmin ping -h mariadb -u"${MYSQL_USER}" -p"${DB_PASSWORD}" --silent
 
 if [ ! -f wp-config.php ]; then
     if [ ! -f wp-settings.php ]; then

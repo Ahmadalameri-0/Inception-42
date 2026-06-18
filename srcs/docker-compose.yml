@@ -5,13 +5,12 @@ services:
       - db_password
     volumes:
       - mariadb_data:/var/lib/mysql
-    image: mariadb
     env_file:
       - .env
     networks:
       - inception
-    build:
-      context: ./requirements/mariadb
+    build: ./requirements/mariadb
+    image: mariadb
     container_name: mariadb
     restart: always
 
@@ -23,26 +22,24 @@ services:
       - mariadb
     volumes:
       - wordpress_data:/var/www/html
-    image: wordpress
     env_file:
       - .env
     networks:
       - inception
-    build:
-      context: ./requirements/wordpress
+    build: ./requirements/wordpress
+    image: wordpress
     container_name: wordpress
     restart: always
 
   nginx:
     depends_on:
       - wordpress
-    image: nginx
     env_file:
       - .env
     networks:
       - inception
-    build:
-      context: ./requirements/nginx
+    build: ./requirements/nginx
+    image: nginx
     container_name: nginx
     ports:
       - "443:443"
